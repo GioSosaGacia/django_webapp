@@ -1,14 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+#importamos el modelo Persona de la app personas
+from personas.models import Persona
+
+
 # Create your views here.
 
 def bienvenido(request):
-    return HttpResponse('Hola mundo desde Django')
+    no_personas = Persona.objects.count()
+    personas = Persona.objects.all() #retorna los objetos de tipo modelo
+    return render(request, 'bienvenido.html', {'no_personas':no_personas, 'personas':personas})
 
-def despedida(request):
-    return HttpResponse('Despedida desde Django!!')
-
-
-def contacto(request):
-    return HttpResponse('Mi nombre es Giovanni, mis datos son: Telefono: 3326036684, Correo:giovanni-sosa-12@outlook.com')

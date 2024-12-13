@@ -17,13 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from webapp.views import bienvenido, despedida, contacto
+from personas.views import detallePersona
+from webapp.views import bienvenido
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('bienvenido/', bienvenido),
     #De esta manera abre la ventana sin indicar la ruta
-    path('', bienvenido),
-    path('despedida.html/', despedida),
-    path('contacto.html/', contacto),
+    path('', view=bienvenido),
+    path('detalle_persona/<int:id>', detallePersona)
 ]
