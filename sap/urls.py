@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from personas.views import detallePersona
+from personas.views import detallePersona, nuevaPersona
 from webapp.views import bienvenido
 
 urlpatterns = [
@@ -25,5 +25,6 @@ urlpatterns = [
     #path('bienvenido/', bienvenido),
     #De esta manera abre la ventana sin indicar la ruta
     path('', view=bienvenido),
-    path('detalle_persona/<int:id>', detallePersona)
+    path('detalle_persona/<int:id>', detallePersona),
+    path('nueva_persona', nuevaPersona),
 ]

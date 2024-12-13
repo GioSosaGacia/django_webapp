@@ -10,6 +10,9 @@ def detallePersona(request,id):
     return render(request, 'personas/detalle.html', {'persona':persona})
 
 
-PersonaForm = modelform_factory(Persona)
+#clase generada a partir del objeto modelform_factory, tambien debemos indicar si vamos a excluir algunos de los campos del modelo
+PersonaForm = modelform_factory(Persona, exclude=[])
+
 def nuevaPersona(request):
-    pass
+    formaPersona = PersonaForm()
+    return render(request, 'personas/nuevo.html', {'formaPersona':formaPersona})
