@@ -41,3 +41,10 @@ def editarPersona(request,id):
         formaPersona = PersonaForm(instance=persona)
 
     return render(request, 'personas/editar.html', {'formaPersona': formaPersona})
+
+
+def eliminarPersona(request, id):
+    persona = get_object_or_404(Persona, pk=id)  # de esta manera nos arroja 404 si no existe el registro
+    if persona:
+        persona.delete()
+    return  redirect('index')
