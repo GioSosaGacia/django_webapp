@@ -1,5 +1,7 @@
 from django.forms import modelform_factory
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+
+from personas.forms import PersonaForm
 from personas.models import Persona
 
 
@@ -10,9 +12,19 @@ def detallePersona(request,id):
     return render(request, 'personas/detalle.html', {'persona':persona})
 
 
+#1.Forma de crear un formulario
 #clase generada a partir del objeto modelform_factory, tambien debemos indicar si vamos a excluir algunos de los campos del modelo
-PersonaForm = modelform_factory(Persona, exclude=[])
+#PersonaForm = modelform_factory(Persona, exclude=[])
 
+
+#2.Segunda forma creando un archivo forms.py para crear el formulario e importamos el formulario creado de forms.py a views
 def nuevaPersona(request):
-    formaPersona = PersonaForm()
+    if request.method == 'POST':
+        formaPersona = PersonaForm(request.POST)
+        if formaPersona.is_valid():
+            formaPersona.save()
+            return redirect('index')
+    else:
+        formaPersona = PersonaForm()
+
     return render(request, 'personas/nuevo.html', {'formaPersona':formaPersona})

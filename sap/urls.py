@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('bienvenido/', bienvenido),
     #De esta manera abre la ventana sin indicar la ruta
-    path('', view=bienvenido),
+    path('', view=bienvenido, name='index'),
     path('detalle_persona/<int:id>', detallePersona),
     path('nueva_persona', nuevaPersona),
 ]
